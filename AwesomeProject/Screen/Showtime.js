@@ -56,7 +56,7 @@ const Showtime = ({ route }) => {
               console.log('Selected Showtime:', selectedShowtime);
   
               // Navigate to the SeatScreen.js with data
-              navigation.navigate('SeatScreen1', {
+              navigation.navigate('SeatScreen', {
                 movieName: movieName,
                 selectedDate: selectedDate,
                 selectedShowtime: selectedShowtime,
