@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
 
+// Function to validate email
+export function emailValidator(email) {
+  const re = /\S+@\S+\.\S+/;
+  if (!email) return "Email can't be empty.";
+  if (!re.test(email)) return 'Ooops! We need a valid email address.';
+  return '';
+}
+
 const db = SQLite.openDatabase({ name: 'db.sqlite', createFromLocation: 1 });
 
 const SignUpScreen = ({ navigation }) => {
@@ -10,16 +18,14 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    // Create the 'users' table if it doesn't exist
-    db.transaction((tx) => {
-      tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT);'
-      );
-    });
-  }, []);
-
   const handleSignUp = () => {
+    // Validate email using the emailValidator function
+    const emailError = emailValidator(email);
+    if (emailError) {
+      setErrorMessage(emailError);
+      return; // Don't proceed with sign up if email is invalid
+    }
+
     db.transaction((tx) => {
       tx.executeSql(
         'SELECT * FROM users WHERE email = ?',

@@ -12,24 +12,18 @@ const GetStarted = () => {
   };
 
   return (
-    
     <View style={styles.container}>
       {/* Logo in the middle */}
       <Image source={require('../images/applogo.png')} style={styles.logo} />
 
-      {/* Skip button */}
-      <TouchableOpacity style={styles.skipButton}onPress={handleGetStartedPress}>
-        <Text style={styles.skipText}>Skip</Text>
-      </TouchableOpacity>
-
       {/* Transparent bottom tab */}
-      <TouchableOpacity style={styles.bottomTab} >
-        <Text style={styles.tabText}>Get Started</Text> 
+      <TouchableOpacity style={styles.bottomTab} onPress={handleGetStartedPress}>
+        <Text style={styles.tabText}>Get Started</Text>
       </TouchableOpacity>
     </View>
   );
 };
-// Havent done Getsarted tab, gonna have
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -41,14 +35,6 @@ const styles = StyleSheet.create({
     width: 200, // Adjust the size of your logo
     height: 200, // Adjust the size of your logo
     marginBottom: 50, // Adjust the margin as needed
-  },
-  skipButton: {
-    marginTop: 300, // Adjust the distance from the logo as needed
-  },
-  skipText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'blue', // Set your desired text color
   },
   bottomTab: {
     position: 'absolute',

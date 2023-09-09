@@ -10,6 +10,8 @@ import SQLite from 'react-native-sqlite-storage';
 import BottomTab from '../assets/BottomTab';
 import MovieListScreen from '../Database/MovieListScreen';
 import CinemaHome from './cinemahome';
+import Websocket from './Websocket';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -149,12 +151,58 @@ const HomeScreenContent = ({ navigation }) => {
           <SideBars {...props} />
         )}
       >
-        <Drawer.Screen name="HomeScreenContent" component={HomeScreenContent} />
-        <Drawer.Screen name="Movie List" component={CinemaHome} />
-        <Drawer.Screen name="Profiles" component={UserdataScreen} />
-        <Drawer.Screen name="MovieList" component={MovieListScreen} />
-        <Drawer.Screen name="TestScreen Database for User" component={TestScreen} />
-        {/* Add other screens to the drawer as needed */}
+          <Drawer.Screen
+            name="HomeScreenContent"
+            component={HomeScreenContent}
+            options={{
+              drawerLabel: 'Home',
+              drawerIcon: ({ color, size }) => (
+                <FontAwesome name="home" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="Movie List"
+            component={CinemaHome}
+            options={{
+              drawerLabel: 'Movies',
+              drawerIcon: ({ color, size }) => (
+                <FontAwesome name="film" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="Profiles"
+            component={UserdataScreen}
+            options={{
+              drawerLabel: 'Profiles',
+              drawerIcon: ({ color, size }) => (
+                <FontAwesome name="user" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="TestScreen Database for User"
+            component={TestScreen}
+            options={{
+              drawerLabel: 'TestScreen',
+              drawerIcon: ({ color, size }) => (
+                <FontAwesome name="user" color={color} size={size} />
+              ),
+            }}
+          />
+          <Drawer.Screen
+            name="Contact Support"
+            component={Websocket}
+            options={{
+              drawerLabel: 'Customer Support',
+              drawerIcon: ({ color, size }) => (
+                <FontAwesome name="envelope-o" color={color} size={size} />
+              ),
+            }}
+          />
+          {/* Add similar options for other screens */}
+
       </Drawer.Navigator>
     );
   };

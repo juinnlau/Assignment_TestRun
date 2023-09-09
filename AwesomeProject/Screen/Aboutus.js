@@ -1,18 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import tiktokIcon from '../images/tiktok.png';
+import whatsappIcon from '../images/whatsapp.png';
+import facebookIcon from '../images/facebook.png';
 
 const AboutUs = () => {
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../images/applogo.png')}
-        style={styles.logo}
-      />
+      <Image source={require('../images/applogo.png')} style={styles.logo} />
       <Text style={styles.heading}>About Our App</Text>
       <Text style={styles.description}>
-        Welcome to our app! More features will be adding soon.
+        Welcome to our app! We are continuously working to bring you new features and improvements.
       </Text>
-      {/* You can add more text and images here */}
+      <Text style={styles.contactHeading}>Contact Us:</Text>
+      <View style={styles.contactContainer}>
+        <TouchableOpacity onPress={() => openLink('https://www.tiktok.com/')}>
+          <Image source={tiktokIcon} style={styles.contactIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => openLink('https://www.whatsapp.com/')}>
+          <Image source={whatsappIcon} style={styles.contactIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => openLink('https://www.facebook.com/')}>
+          <Image source={facebookIcon} style={styles.contactIcon} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -38,6 +49,23 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 20,
+  },
+  contactHeading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  contactContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  contactIcon: {
+    width: 40,
+    height: 40,
+    marginHorizontal: 10,
   },
 });
 

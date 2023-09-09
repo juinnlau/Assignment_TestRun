@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, Image, ImageBackground } from 'react-native'; // Import ImageBackground
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SQLite from 'react-native-sqlite-storage';
-import CinemaHome from './cinemahome';
-import HomeScreen from './HomeScreen';
 let SQLITE = require('react-native-sqlite-storage');
 
 function LoginScreen({ navigation }) {

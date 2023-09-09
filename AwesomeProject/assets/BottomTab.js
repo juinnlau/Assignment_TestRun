@@ -8,15 +8,15 @@ const BottomTab = ({ navigation }) => {
     <View style={styles.taskBar}>
       <TouchableOpacity
         style={styles.taskBarButton}
-        onPress={() => navigation.navigate('CinemaHome')}
+        onPress={() => navigation.navigate('HomeScreen')}
       >
-        <Text style={styles.taskBarButtonText}>Movies</Text>
+        <Text style={styles.taskBarButtonText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.taskBarButton}
         onPress={() => navigation.navigate('UserdataScreen')}
       >
-        <Text style={styles.taskBarButtonText}>Me</Text>
+        <Text style={styles.taskBarButtonText}>Profile</Text>
       </TouchableOpacity>
     </View>
   );
