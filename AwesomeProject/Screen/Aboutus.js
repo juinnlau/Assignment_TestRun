@@ -14,13 +14,13 @@ const AboutUs = () => {
       </Text>
       <Text style={styles.contactHeading}>Contact Us:</Text>
       <View style={styles.contactContainer}>
-        <TouchableOpacity onPress={() => openLink('https://www.tiktok.com/')}>
+        <TouchableOpacity >
           <Image source={tiktokIcon} style={styles.contactIcon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => openLink('https://www.whatsapp.com/')}>
+        <TouchableOpacity >
           <Image source={whatsappIcon} style={styles.contactIcon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => openLink('https://www.facebook.com/')}>
+        <TouchableOpacity >
           <Image source={facebookIcon} style={styles.contactIcon} />
         </TouchableOpacity>
       </View>

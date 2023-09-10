@@ -8,10 +8,11 @@ const PaymentScreen = ({ route, navigation }) => {
   const [cvv, setCvv] = useState('');
   const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
   const [isCardValid, setIsCardValid] = useState(true); // Card validation state
-
+  const [userEmail, setUserEmail] = useState(''); // User's email state
   const { params } = route;
 
   useEffect(() => {
+    console.log('Received User Email:', userEmail);
     console.log('Received Movie Name:', params?.movieName);
     console.log('Received Date:', params?.selectedDate);
     console.log('Received Showtime:', params?.selectedShowtime);
@@ -22,7 +23,7 @@ const PaymentScreen = ({ route, navigation }) => {
     const numberOfSeats = params?.bookedSeats?.length || 0;
     const calculatedTotalAmount = seatPrice * numberOfSeats;
     setTotalAmount(calculatedTotalAmount);
-  }, [params]);
+  }, [params, userEmail]);
 
   const handleCardNumberChange = (text) => {
     // Remove any non-numeric characters from the input
@@ -129,6 +130,23 @@ const PaymentScreen = ({ route, navigation }) => {
     }
   };
   
+  useEffect(() => {
+    // Retrieve the user's email from AsyncStorage
+    AsyncStorage.getItem('userData')
+      .then(data => {
+        if (data) {
+          const userData = JSON.parse(data);
+          const userEmail = userData.email;
+          setUserEmail(userEmail); // Set userEmail state
+          console.log('User Email:', userEmail);
+        } else {
+          // Handle the case when no user data is found
+        }
+      })
+      .catch(error => {
+        console.error('Error reading user data from AsyncStorage:', error);
+      });
+  }, []);
 
   return (
     <View style={styles.container}>

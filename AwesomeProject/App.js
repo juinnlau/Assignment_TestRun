@@ -5,7 +5,6 @@ import GetStarted from './Screen/getstarted';
 import LoginScreen from './Screen/LoginScreen';
 import UserdataScreen from './Screen/UserdataScreen';
 import SignUpScreen from './Screen/SignUpScreen';
-import ShowtimesScreen from './Screen/ShowtimesScreen';
 import SQLite from 'react-native-sqlite-storage';
 import Usermanagement from './Database/Usermanagement';
 import MovieDetails from './Database/Moviedetails';
@@ -22,6 +21,10 @@ import BookingHistory from './Screen/BookingHistory';
 import AccountDetails from './Screen/AccountDetails';
 import Aboutus from './Screen/Aboutus';
 import Websocket from './Screen/Websocket'
+import MovieDetail from './component/Moviedetail';
+import NowPlaying from './component/NowPlaying';
+import Upcoming from './component/Upcoming';
+import apihome from './Database/api';
 
 const Stack = createStackNavigator();
 
@@ -58,7 +61,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Getstarted">
+      <Stack.Navigator initialRouteName="Moviedetail">
         <Stack.Screen name="LoginScreen">
           {props => <LoginScreen {...props} db={db} />}
         </Stack.Screen>
@@ -81,11 +84,14 @@ const App = () => {
                   />
 
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} /> 
-        <Stack.Screen name="ShowtimesScreen" component={ShowtimesScreen} />
+      
         <Stack.Screen name="Getstarted" component={GetStarted} options={{
             headerShown: false, // Hide the header for this screen
           }}/>
         <Stack.Screen name="Websocket" component={Websocket} />
+        <Stack.Screen name="MovieDetail" component={MovieDetail} />
+        <Stack.Screen name="Nowplaying" component={NowPlaying} />
+        <Stack.Screen name="Upcoming" component={Upcoming} />
         
       </Stack.Navigator>
     </NavigationContainer>

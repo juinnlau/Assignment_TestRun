@@ -57,7 +57,7 @@ export default class Websocket extends Component {
       this.setState({
         chatroom:
           this.state.chatroom +
-          `Message from ${messageBag.sender} at ${messageBag.timestamp}:\n
+          `Message from Client:${messageBag.sender} at ${messageBag.timestamp}:\n
 ${messageBag.message}\n\n`,
       });
     });

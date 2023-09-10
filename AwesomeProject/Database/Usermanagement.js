@@ -10,6 +10,8 @@ import {
   StyleSheet,
 } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
+import { insertBookingHistory, getBookingHistoryForUser } from './Historydb';
+
 
 const TestScreen = () => {
   const [newUser, setNewUser] = useState({
@@ -22,6 +24,9 @@ const TestScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [userIdToUpdate, setUserIdToUpdate] = useState(null);
+
+  const [bookingHistory, setBookingHistory] = useState([]);
+  const [noBookingHistory, setNoBookingHistory] = useState(false);
 
   const db = SQLite.openDatabase(
     { name: 'db.sqlite', location: 'Library' },
@@ -48,6 +53,20 @@ const TestScreen = () => {
       console.error('Error opening database:', error);
     }
   );
+
+  useEffect(() => {
+    // You can replace 'userEmail' with the actual logged-in user's email
+    const userEmail = route.params.email;
+
+    // Retrieve booking history for the logged-in user
+    getBookingHistoryForUser(userEmail, (userBookingHistory) => {
+      if (userBookingHistory.length > 0) {
+        setBookingHistory(userBookingHistory);
+      } else {
+        setNoBookingHistory(true);
+      }
+    });
+  }, [route.params.email]);
 
   const handleCreateUser = () => {
     if (newUser.username && newUser.email && newUser.password) {

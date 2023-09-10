@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
+import { useNavigation } from '@react-navigation/native';
 
 // Function to validate email
 export function emailValidator(email) {
@@ -12,7 +13,9 @@ export function emailValidator(email) {
 
 const db = SQLite.openDatabase({ name: 'db.sqlite', createFromLocation: 1 });
 
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreen = () => {
+  const navigation = useNavigation();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -39,7 +42,8 @@ const SignUpScreen = ({ navigation }) => {
               [username, email, password],
               (_, result) => {
                 setErrorMessage('');
-                navigation.navigate('Home'); // Navigate to Home after successful sign up
+                // Navigate to the LoginScreen after successful sign up
+                navigation.navigate('LoginScreen');
               },
               (error) => {
                 console.error('Error during sign up:', error);

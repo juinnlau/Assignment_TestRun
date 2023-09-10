@@ -48,33 +48,24 @@ const UserdataScreen = ({ navigation }) => {
           source={require('../images/usericon.jpg')}
           style={styles.profileImage}
         />
-        <Text style={styles.username}>user: {userData ? userData.email : ''}</Text>
+        <Text style={styles.username}>User: {userData ? userData.email : ''}</Text>
       </View>
 
       <View style={styles.section}>
-      <TouchableOpacity onPress={() => navigation.navigate('AccountDetails', { userEmail: userData.email })}>
-
-
+        <TouchableOpacity onPress={() => navigation.navigate('AccountDetails', { userEmail: userData.email })}>
           <Text style={styles.sectionTitle}>Account Details</Text>
-          {/* Display user account details here */}
         </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
-      <TouchableOpacity
-  onPress={() =>
-    navigation.navigate('BookingHistory', {
-    })
-  }>
-  <Text style={styles.sectionTitle}>Booking History</Text>
-</TouchableOpacity>
-
+        <TouchableOpacity onPress={() => navigation.navigate('BookingHistory', { userData,navigation })}>
+          <Text style={styles.sectionTitle}>Booking History</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
-      <TouchableOpacity onPress={() => navigation.navigate('Aboutus')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Aboutus')}>
           <Text style={styles.sectionTitle}>About Us</Text>
-          {/* Display information about your app or organization */}
         </TouchableOpacity>
       </View>
 
@@ -157,6 +148,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 
 export default UserdataScreen;
