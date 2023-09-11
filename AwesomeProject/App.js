@@ -9,7 +9,6 @@ import SQLite from 'react-native-sqlite-storage';
 import Usermanagement from './Database/Usermanagement';
 import MovieDetails from './Database/Moviedetails';
 import MovieListScreen from './Database/MovieListScreen';
-import DrawerNavigator from './assets/DrawerNavigator';
 import CinemaHome from './Screen/cinemahome';
 import Showtime from './Screen/Showtime';
 import SeatScreen from './Screen/SeatScreen';
@@ -61,7 +60,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Moviedetail">
+      <Stack.Navigator initialRouteName="Getstarted">
         <Stack.Screen name="LoginScreen">
           {props => <LoginScreen {...props} db={db} />}
         </Stack.Screen>

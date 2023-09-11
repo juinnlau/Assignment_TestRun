@@ -60,27 +60,31 @@ const AccountDetails = ({ route }) => {
       <Text style={styles.heading}>Account Details</Text>
       {userData && (
         <View style={styles.userItem}>
-          
           <Text>Username: {userData.username}</Text>
           <Text>Email: {userData.email}</Text>
-          <Button title="Reset Password" onPress={() => setShowPasswordModal(true)} />
+          <Button title="Update Password" onPress={() => setShowPasswordModal(true)} />
         </View>
       )}
 
-      <Modal visible={showPasswordModal} animationType="slide">
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalHeading}>Reset Password</Text>
-          <TextInput
-            style={styles.modalInput}
-            placeholder="New Password"
-            value={newPassword}
-            onChangeText={(text) => setNewPassword(text)}
-            secureTextEntry
-          />
-          <Button title="Update Password" onPress={handleResetPassword} />
-          <Button title="Close" onPress={() => setShowPasswordModal(false)} />
-          {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
-          {successMessage ? <Text style={styles.successText}>{successMessage}</Text> : null}
+      <Modal visible={showPasswordModal} animationType="slide" transparent={true}>
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalHeading}>Reset Password</Text>
+            <TextInput
+              style={styles.modalInput}
+              placeholder="New Password"
+              value={newPassword}
+              onChangeText={(text) => setNewPassword(text)}
+              secureTextEntry
+            />
+            <View style={styles.buttonContainer}>
+              <Button title="Update Password" onPress={handleResetPassword} />
+              <View style={{ margin: 5}} /> 
+              <Button title="Close" onPress={() => setShowPasswordModal(false)} />
+            </View>
+            {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+            {successMessage ? <Text style={styles.successText}>{successMessage}</Text> : null}
+          </View>
         </View>
       </Modal>
     </View>
@@ -97,8 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#ccc'
-    
+    color: 'black',
   },
   userItem: {
     borderWidth: 1,
@@ -106,19 +109,24 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 16,
     marginBottom: 10,
-    
   },
-  modalContainer: {
+  modalBackground: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+  },
+  modalContainer: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 16,
+    alignItems: 'center',
   },
   modalHeading: {
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
-    
   },
   modalInput: {
     borderWidth: 1,

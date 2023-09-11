@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getBookingHistoryForUser } from '../Database/Historydb';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
-
-const clearBookingHistory = async () => {
-    try {
-      await AsyncStorage.removeItem('bookingHistory'); // Remove the 'bookingHistory' key
-      console.log('Booking history cleared successfully');
-    } catch (error) {
-      console.error('Error clearing booking history:', error);
-    }
-  };
-  //clearBookingHistory();  if you want to clear History
 const BookingHistory = () => {
   const [bookingData, setBookingData] = useState([]);
-
+  const [userEmail, setUserEmail] = useState('');
   useEffect(() => {
-    // Retrieve booking history data from AsyncStorage
-    AsyncStorage.getItem('bookingHistory')
+    // Retrieve the user's email from AsyncStorage
+    AsyncStorage.getItem('userData')
       .then((data) => {
         if (data) {
-          const storedData = JSON.parse(data);
-          setBookingData(storedData); // Set the retrieved data directly
-          console.log('Booking history data retrieved successfully:', storedData);
+          const userData = JSON.parse(data);
+          const userEmail = userData.email;
+          setUserEmail(userEmail); // Set the userEmail state
+          console.log('User Email:', userEmail);
+
+          // Retrieve booking history data for the user using the userEmail
+          getBookingHistoryForUser(userEmail, (storedData) => {
+            setBookingData(storedData); // Set the retrieved data directly
+            console.log('Booking history data retrieved successfully:', storedData);
+          });
         } else {
-          console.log('No booking history data found in AsyncStorage');
+          console.log('No user data found in AsyncStorage');
         }
       })
       .catch((error) => {
-        console.error('Error retrieving booking history data:', error);
+        console.error('Error retrieving user data from AsyncStorage:', error);
       });
   }, []);
-  
 
   return (
     <ScrollView style={styles.container}>
@@ -43,8 +40,9 @@ const BookingHistory = () => {
           <Text style={styles.whiteText}>Date: {booking.selectedDate}</Text>
           <Text style={styles.whiteText}>Showtime: {booking.selectedShowtime}</Text>
           <Text style={styles.whiteText}>
-            Booked Seats: {booking.bookedSeats ? booking.bookedSeats.join(', ') : 'No seats booked'}
-          </Text>
+  Booked Seats: {booking.bookedSeats ? booking.bookedSeats.split('-').join(' - ') : 'No seats booked'}
+</Text>
+
         </View>
       ))}
       {bookingData.length === 0 && (
@@ -58,13 +56,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: 'black', // Set background color to black
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'white', // Set text color to white
+    color: 'black',
   },
   bookingContainer: {
     borderColor: '#ddd',
@@ -72,16 +70,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     marginBottom: 20,
-    backgroundColor: 'black', // Set background color to black
+    backgroundColor: 'white',
   },
   bookingTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: 'white', // Set text color to white
+    color: 'black',
   },
   whiteText: {
-    color: 'white', // Set text color to white
+    color: 'black',
   },
   noHistoryText: {
     fontSize: 16,

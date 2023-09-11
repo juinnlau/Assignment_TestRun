@@ -15,6 +15,18 @@ tx.executeSql(
   );
   
 });
+const deleteUserDataFromHistory = (userEmail) => {
+  db.transaction((tx) => {
+    tx.executeSql('DELETE FROM booking_history WHERE userEmail = ?', [userEmail], (tx, results) => {
+      if (results.rowsAffected > 0) {
+        console.log('User data removed from booking history.');
+      } else {
+        console.log('No user data found in booking history.');
+      }
+    });
+  });
+};
+
 
 const insertBookingHistory = (userEmail, movieName, selectedDate, selectedShowtime, bookedSeats) => {
     db.transaction((tx) => {

@@ -1,4 +1,3 @@
-// This is a backend Test for developers uses aka User Managment system
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -10,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
-import { insertBookingHistory, getBookingHistoryForUser } from './Historydb';
+import { insertBookingHistory, getBookingHistoryForUser, deleteUserDataFromHistory } from './Historydb';
 
 
 const TestScreen = () => {
@@ -24,9 +23,6 @@ const TestScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [userIdToUpdate, setUserIdToUpdate] = useState(null);
-
-  const [bookingHistory, setBookingHistory] = useState([]);
-  const [noBookingHistory, setNoBookingHistory] = useState(false);
 
   const db = SQLite.openDatabase(
     { name: 'db.sqlite', location: 'Library' },
@@ -53,20 +49,6 @@ const TestScreen = () => {
       console.error('Error opening database:', error);
     }
   );
-
-  useEffect(() => {
-    // You can replace 'userEmail' with the actual logged-in user's email
-    const userEmail = route.params.email;
-
-    // Retrieve booking history for the logged-in user
-    getBookingHistoryForUser(userEmail, (userBookingHistory) => {
-      if (userBookingHistory.length > 0) {
-        setBookingHistory(userBookingHistory);
-      } else {
-        setNoBookingHistory(true);
-      }
-    });
-  }, [route.params.email]);
 
   const handleCreateUser = () => {
     if (newUser.username && newUser.email && newUser.password) {
@@ -135,11 +117,13 @@ const TestScreen = () => {
       console.log('New password field is empty.');
     }
   };
-  const handleDeleteUser = (id) => {
+  const handleDeleteUser = (id, userEmail) => {
     db.transaction((tx) => {
       tx.executeSql('DELETE FROM users WHERE id = ?', [id], (tx, results) => {
         if (results.rowsAffected > 0) {
           console.log('User deleted successfully.');
+          // After deleting the user, delete their related data from booking history
+          deleteUserDataFromHistory(userEmail);
           loadUsers(); // Reload the user list
         } else {
           console.log('User deletion failed.');
@@ -147,6 +131,8 @@ const TestScreen = () => {
       });
     });
   };
+  
+  
   return (
     <View style={styles.container}>
     

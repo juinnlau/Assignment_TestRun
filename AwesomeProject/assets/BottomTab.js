@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather'; 
 
 const BottomTab = ({ navigation }) => {
   const route = useRoute();
@@ -26,7 +27,7 @@ const BottomTab = ({ navigation }) => {
         }}
         disabled={isTabActive(homeTabName)} // Disable the button if it's already active
       >
-        <Text style={styles.taskBarButtonText}>Home</Text>
+        <Icon name="home" size={24} color={isTabActive(homeTabName) ? 'white' : 'white'} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.taskBarButton}
@@ -38,7 +39,7 @@ const BottomTab = ({ navigation }) => {
         }}
         disabled={isTabActive(profileTabName)} // Disable the button if it's already active
       >
-        <Text style={styles.taskBarButtonText}>Profile</Text>
+        <Icon name="user" size={24} color={isTabActive(profileTabName) ? 'white' : 'white'} />
       </TouchableOpacity>
     </View>
   );
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'black',
     height: 60,
     position: 'absolute',
     bottom: 0,
@@ -60,10 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  taskBarButtonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
 

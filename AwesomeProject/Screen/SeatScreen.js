@@ -25,7 +25,7 @@ const SeatScreen = ({ route, navigation }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   
   // Access the route params from the Showtime Screen
-  const { movieName, selectedDate, selectedShowtime } = route.params;
+  const { userEmail, movieName, selectedDate, selectedShowtime } = route.params;
   // Log the received data to validate
   console.log('Received Movie Name:', movieName);
   console.log('Received Date:', selectedDate);
@@ -107,7 +107,7 @@ const SeatScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.hallText}>Hall-1</Text>
+      <Text style={styles.hallText}></Text>
       <View style={styles.screen}>
         <Text style={styles.screenText}>Screen</Text>
       </View>

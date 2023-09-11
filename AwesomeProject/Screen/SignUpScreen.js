@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet, Text, ImageBackground } from 'react-native'; // Import ImageBackground
 import SQLite from 'react-native-sqlite-storage';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,6 +8,13 @@ export function emailValidator(email) {
   const re = /\S+@\S+\.\S+/;
   if (!email) return "Email can't be empty.";
   if (!re.test(email)) return 'Ooops! We need a valid email address.';
+  return '';
+}
+
+// Function to validate password
+export function passwordValidator(password) {
+  if (!password) return "Password can't be empty.";
+  if (password.length < 6) return 'Password must be at least 6 characters long.';
   return '';
 }
 
@@ -27,6 +34,13 @@ const SignUpScreen = () => {
     if (emailError) {
       setErrorMessage(emailError);
       return; // Don't proceed with sign up if email is invalid
+    }
+
+    // Validate password using the passwordValidator function
+    const passwordError = passwordValidator(password);
+    if (passwordError) {
+      setErrorMessage(passwordError);
+      return; // Don't proceed with sign up if password is invalid
     }
 
     db.transaction((tx) => {
@@ -63,43 +77,54 @@ const SignUpScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        onChangeText={(text) => setUsername(text)}
-        value={username}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-      />
-      <Button title="Sign Up" onPress={handleSignUp} />
-      <Text style={styles.errorMessage}>{errorMessage}</Text>
-    </View>
+    <ImageBackground source={require('../images/wallpaper.jpg')} style={styles.wallpaper}>
+      <View style={styles.container}>
+        <Text style={styles.title}>User Sign Up</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor="white"
+          onChangeText={(text) => setUsername(text)}
+          value={username}
+        />
+        <TextInput
+          style={styles.input}
+          placeholderTextColor="white"
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+        />
+        <TextInput
+          style={styles.input}
+          placeholderTextColor="white"
+          placeholder="Password"
+          secureTextEntry
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+        />
+        <Button title="Sign Up" onPress={handleSignUp} />
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  wallpaper: {
+    flex: 1,
+    resizeMode: 'cover', // Cover the entire screen
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Add a semi-transparent background
   },
   title: {
     fontSize: 24,
     marginBottom: 16,
+    color: 'white',
   },
   input: {
     width: '80%',
@@ -109,6 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
     paddingHorizontal: 10,
+    color: 'white',
   },
   errorMessage: {
     color: 'red',

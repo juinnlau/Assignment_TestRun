@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    backgroundColor: 'black', // Set background color to black
+    backgroundColor: 'white', 
   },
   header: {
     flexDirection: 'row',
@@ -103,18 +103,18 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white', // Set text color to white
+    color: 'black', // Set text color to white
   },
   section: {
     marginBottom: 20,
     borderBottomWidth: 1, // Add a thin border line
-    borderBottomColor: 'white', // Specify the border color
+    borderBottomColor: 'black', // Specify the border color
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: 'white', // Set text color to white
+    color: 'black', // Set text color to white
   },
   logoutButton: {
     backgroundColor: 'red',

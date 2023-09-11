@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0, 40, 0, 0.2)', // Transparent background color
+    backgroundColor: 'black', // Transparent background color
     padding: 16,
     alignItems: 'center',
   },

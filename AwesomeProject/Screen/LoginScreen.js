@@ -74,7 +74,8 @@ function LoginScreen({ navigation }) {
   return (
     <ImageBackground source={require('../images/wallpaper.jpg')} style={styles.wallpaper}>
       <View style={styles.container}>
-        <Text style={styles.title}>Login to Continue</Text>
+        
+        <Text style={styles.title}>USER LOGIN</Text>
         <TextInput
           style={styles.input}
           placeholderTextColor="white"

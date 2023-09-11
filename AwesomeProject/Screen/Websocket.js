@@ -84,7 +84,8 @@ ${messageBag.message}\n\n`,
         />
         <TextInput
           style={styles.input}
-          placeholder="Enter message"
+          placeholder="Enter message..."
+          placeholderTextColor="black"
           value={this.state.message}
           selectTextOnFocus={true}
           onChangeText={(message) => {
