@@ -13,12 +13,12 @@ const BookingHistory = () => {
         if (data) {
           const userData = JSON.parse(data);
           const userEmail = userData.email;
-          setUserEmail(userEmail); // Set the userEmail state
+          setUserEmail(userEmail);
           console.log('User Email:', userEmail);
 
           // Retrieve booking history data for the user using the userEmail
           getBookingHistoryForUser(userEmail, (storedData) => {
-            setBookingData(storedData); // Set the retrieved data directly
+            setBookingData(storedData); 
             console.log('Booking history data retrieved successfully:', storedData);
           });
         } else {

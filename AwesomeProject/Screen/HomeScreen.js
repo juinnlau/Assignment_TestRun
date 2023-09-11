@@ -11,37 +11,22 @@ import {
   Alert,
   TextInput,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import SideBars from '../assets/SideBars';
 import UserdataScreen from './UserdataScreen';
 import TestScreen from '../Database/Usermanagement';
-import SQLite from 'react-native-sqlite-storage';
 import BottomTab from '../assets/BottomTab';
-import MovieListScreen from '../Database/MovieListScreen';
-import CinemaHome from './cinemahome';
-import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import NowPlaying from '../component/NowPlaying';
 import Upcoming from '../component/Upcoming';
-import MovieDetail from '../component/Moviedetail';
 import Websocket from './Websocket';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const moviesOnTrending = [
-  {
-    title: 'Life Of Game',
-    image: require('../images/movie1.jpeg'),
-    showtimes: 'Showtimes for Movie 1',
-    description:
-      'Description for Movie 1. This is a great movie that you must watch!',
-  },
-];
 
 const HomeScreenContent = ({ navigation }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -73,7 +58,7 @@ const HomeScreen = () => {
         name="TestScreen Database for User"
         component={TestScreen}
       />
-      {/* Add other screens to the drawer as needed */}
+      
     </Drawer.Navigator>
   );
 };
@@ -88,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#333', // Change text color to dark gray
+    color: '#333',
   },
   sectionTitle: {
     fontSize: 24,
@@ -111,14 +96,14 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     backgroundColor: 'white',
-    elevation: 0, // Remove shadow on Android
+    elevation: 0,
   },
   tabLabel: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'black',
   },
-  // Add more styles as needed
+  
 });
 
 export default HomeScreen;

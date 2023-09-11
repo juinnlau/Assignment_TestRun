@@ -97,24 +97,24 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     marginRight: 10,
-    borderWidth: 2, // Add a border width
-    borderColor: 'gray', // Specify the border color
+    borderWidth: 2, 
+    borderColor: 'gray', 
   },
   username: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black', // Set text color to white
+    color: 'black', 
   },
   section: {
     marginBottom: 20,
-    borderBottomWidth: 1, // Add a thin border line
-    borderBottomColor: 'black', // Specify the border color
+    borderBottomWidth: 1, 
+    borderBottomColor: 'black', 
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: 'black', // Set text color to white
+    color: 'black', 
   },
   logoutButton: {
     backgroundColor: 'red',

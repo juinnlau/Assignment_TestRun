@@ -112,14 +112,14 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   wallpaper: {
     flex: 1,
-    resizeMode: 'cover', // Cover the entire screen
+    resizeMode: 'cover', 
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Add a semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.4)', 
   },
   title: {
     fontSize: 24,

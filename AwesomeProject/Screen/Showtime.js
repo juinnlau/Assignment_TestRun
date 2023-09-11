@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     fontWeight:'bold',
-    marginVertical: 10, // Add margin for spacing
+    marginVertical: 10,
   },
   
   container: {
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   selectedDateButton: {
-    backgroundColor: '#333', // Change the background color when selected
+    backgroundColor: '#333',
   },
   circle: {
     width: 30,
@@ -241,9 +241,9 @@ const styles = StyleSheet.create({
     
   },
   showtimeItem: {
-     // Set the direction to row for horizontal layout
-    justifyContent: 'center', // Distribute items horizontally
-    alignItems: 'center', // Center items vertically
+    
+    justifyContent: 'center', 
+    alignItems: 'center', 
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 10,

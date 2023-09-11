@@ -34,7 +34,7 @@ const PaymentScreen = ({ route, navigation }) => {
         if (data) {
           const userData = JSON.parse(data);
           const userEmail = userData.email;
-          setUserEmail(userEmail); // Set userEmail state
+          setUserEmail(userEmail); 
           console.log('User Email:', userEmail);
         } else {
           // Handle the case when no user data is found
@@ -123,9 +123,7 @@ const PaymentScreen = ({ route, navigation }) => {
         bookingData.bookedSeats
       );
 
-      // Continue with the rest of your payment logic...
 
-      // Payment successful
       Alert.alert(
         'Payment Successful',
         `Thank you for your purchase! Total Amount: $${totalAmount}`,
@@ -154,7 +152,7 @@ const PaymentScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Payment</Text>
       <TextInput
-        style={[styles.input, !isCardValid && styles.invalidInput]} // Apply style if card is invalid
+        style={[styles.input, !isCardValid && styles.invalidInput]} 
         placeholder="Card Number"
         onChangeText={handleCardNumberChange}
         value={cardNumber}
@@ -205,7 +203,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   invalidInput: {
-    borderColor: 'red', // Change border color for invalid input
+    borderColor: 'red', 
   },
   totalAmount: {
     fontSize: 20,
