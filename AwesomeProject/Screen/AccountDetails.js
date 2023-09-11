@@ -60,7 +60,7 @@ const AccountDetails = ({ route }) => {
       <Text style={styles.heading}>Account Details</Text>
       {userData && (
         <View style={styles.userItem}>
-          <Text>User ID: {userData.id}</Text>
+          
           <Text>Username: {userData.username}</Text>
           <Text>Email: {userData.email}</Text>
           <Button title="Reset Password" onPress={() => setShowPasswordModal(true)} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import moment from 'moment';
+import moment from 'moment'; // Date module
 import { Alert } from 'react-native';
 
 // Import navigation from your navigation library (e.g., React Navigation)
@@ -16,12 +16,12 @@ const Showtime = ({ route }) => {
   const nextDate2 = moment().add(2, 'days').format('DD');
   const nextDay2 = moment().add(2, 'days').format('ddd');
 
-  // Showtimes for each day
   const showtimes = {
     [todayDate]: ['10:30 AM', '01:15 PM', '03:00 PM', '04:00 PM', '05:30 AM', '07:15 PM', '09:00 PM', '10:00 PM'],
-    [nextDate1]: ['11:00 AM', '02:00 PM', '05:00 PM', '08:00 PM', '10:00 PM'],
-    [nextDate2]: ['09:45 AM', '12:30 PM', '03:15 PM', '05:30 PM', '08:30 PM'],
+    [nextDate1]: ['11:00 AM', '02:00 PM', '05:00 PM', '08:00 PM', '10:00 PM', '12:00 PM', '03:30 PM', '06:15 PM'],
+    [nextDate2]: ['09:45 AM', '12:30 PM', '03:15 PM', '05:30 PM', '08:30 PM', '11:45 AM', '02:45 PM', '04:45 PM'],
   };
+  
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedShowtime, setSelectedShowtime] = useState(null);
@@ -50,16 +50,13 @@ const Showtime = ({ route }) => {
           {
             text: 'Confirm',
             onPress: () => {
-              // Log the selected data
-              console.log('Selected Movie Name:', movieName);
-              console.log('Selected Date:', selectedDate);
-              console.log('Selected Showtime:', selectedShowtime);
-  
+
               // Navigate to the SeatScreen.js with data
               navigation.navigate('SeatScreen', {
                 movieName: movieName,
                 selectedDate: selectedDate,
                 selectedShowtime: selectedShowtime,
+                
               });
             },
           },

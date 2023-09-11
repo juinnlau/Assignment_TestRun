@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
+import { useNavigation } from '@react-navigation/native';
+
+// Function to validate email
+export function emailValidator(email) {
+  const re = /\S+@\S+\.\S+/;
+  if (!email) return "Email can't be empty.";
+  if (!re.test(email)) return 'Ooops! We need a valid email address.';
+  return '';
+}
 
 const db = SQLite.openDatabase({ name: 'db.sqlite', createFromLocation: 1 });
 
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreen = () => {
+  const navigation = useNavigation();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    // Create the 'users' table if it doesn't exist
-    db.transaction((tx) => {
-      tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT);'
-      );
-    });
-  }, []);
-
   const handleSignUp = () => {
+    // Validate email using the emailValidator function
+    const emailError = emailValidator(email);
+    if (emailError) {
+      setErrorMessage(emailError);
+      return; // Don't proceed with sign up if email is invalid
+    }
+
     db.transaction((tx) => {
       tx.executeSql(
         'SELECT * FROM users WHERE email = ?',
@@ -33,7 +42,8 @@ const SignUpScreen = ({ navigation }) => {
               [username, email, password],
               (_, result) => {
                 setErrorMessage('');
-                navigation.navigate('Home'); // Navigate to Home after successful sign up
+                // Navigate to the LoginScreen after successful sign up
+                navigation.navigate('LoginScreen');
               },
               (error) => {
                 console.error('Error during sign up:', error);

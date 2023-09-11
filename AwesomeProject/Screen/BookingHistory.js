@@ -11,7 +11,7 @@ const clearBookingHistory = async () => {
       console.error('Error clearing booking history:', error);
     }
   };
-  //clearBookingHistory();
+  //clearBookingHistory();  if you want to clear History
 const BookingHistory = () => {
   const [bookingData, setBookingData] = useState([]);
 
